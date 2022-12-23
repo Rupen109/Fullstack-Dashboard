@@ -15,6 +15,7 @@ const data = [
   { name: "April", Total: 1600 },
   { name: "May", Total: 900 },
   { name: "June", Total: 1700 },
+  {name: "sep", Total : 155},
 ];
 
 const Chart = ({ aspect, title }) => {
@@ -40,7 +41,7 @@ const Chart = ({ aspect, title }) => {
           <Area
             type="monotone"
             dataKey="Total"
-            stroke="#8884d8"
+            stroke="#8884d8" 
             fillOpacity={1}
             fill="url(#total)"
           />
