@@ -14,12 +14,12 @@ const Login = () => {
 
     const {dispatch} = useContext(AuthContext)
 
-    const handleLogin = (e) => {
+    const handleLogin = (e) => { 
         e.preventDefault();   
         signInWithEmailAndPassword (auth, email, password)
             .then((userCredential) => {
                 //sign in
-              const user = userCredential.user;
+                const user = userCredential.user;
               dispatch({type: "LOGIN", payload:user})
               navigate("/")
             })
