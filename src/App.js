@@ -36,11 +36,11 @@ const RequireAuth = ({children}) => {
               />
             </Route>
             <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<Single />} />
+              <Route index element={<RequireAuth> <List /></RequireAuth>} />
+              <Route path=":productId" element={<RequireAuth> <Single /> </RequireAuth> } />
               <Route
                 path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
+                element={<RequireAuth> <New inputs={productInputs} title="Add New Product" /> </RequireAuth>}
               />
             </Route>
           </Route>
