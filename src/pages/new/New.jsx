@@ -9,31 +9,37 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-  const [data, setData] = useState("");
-  const handleInput = (e) => {
-      const id = e.target.id;  
-      const value = e.target.value;
+//   const [data, setData] = useState("");
+//   const handleInput = (e) => {
+//       const id = e.target.id;  
+//       const value = e.target.value;
 
-      setData({ ...data, [id]: value });
-  }
+//       setData({ ...data, [id]: value });
+//   }
     const handleAdd = async (e) => {
         e.preventDefault();
 
-        try {
-            const res = await createUserWithEmailAndPassword(
-                auth,
-                data.email,
-                data.password
-            );
-              await setDoc(doc(db, "users",res.user.uid), {
-                ...data,
-                timeStamp: serverTimestamp(),
-                });
-            }
+        const res = await addDoc(collection(db, "cities"), {
+            name: "sardargadh",
+            state: "CA", 
+            country: "Junagadh"   
+        });          
+        console.log(res);
+        // try {
+        //     const res = await createUserWithEmailAndPassword(
+        //         auth,
+        //         data.email,  
+        //         data.password
+        //     );
+        //       await setDoc(doc(db, "users",res.user.uid), {
+        //         ...data,
+        //         timeStamp: serverTimestamp(),
+        //         });
+        //     }
         
-        catch (err){
-            console.log(err);
-        }
+        // catch (err){
+        //     console.log(err);
+        // }
     };
 
     return (
@@ -42,7 +48,7 @@ const New = ({ inputs, title }) => {
             <div className="newContainer">
                 <Navbar />
                 <div className="top">
-                    <h1>{title}</h1>
+                    <h1>{title}</h1> 
                 </div>
                 <div className="bottom">
                     <div className="left">
@@ -61,10 +67,10 @@ const New = ({ inputs, title }) => {
                             {inputs.map((input) => (
                                 <div className="formInput" key={input.id}>
                                     <label>{input.label}</label>
-                                <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput} />
+                                <input id={input.id} type={input.type} placeholder={input.placeholder}  />
                                 </div>
                             ))}
-                            <button type="submit">Send</button>
+                            <button type="submit"> Send </button>
                         </form>
                     </div>
                 </div>
