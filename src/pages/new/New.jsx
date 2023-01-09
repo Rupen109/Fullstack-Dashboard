@@ -17,41 +17,22 @@ const New = ({ inputs, title }) => {
 
       setData({ ...data, [id]: value });
     }
-    console.log(data);    
-    const handleAdd = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await createUserWithEmailAndPassword(
-                auth,
-                data.email,
-                data.password,
-            );
+    console.log(data);      
+  
+ const handleAdd = async (e) => {
+     e.preventDefault();
+     try {
+         const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
+         await setDoc(doc(db, "users", res.user.uid), {
+             ...data, 
+             timeStamp: serverTimestamp(),
+         });
+     } catch (err) {
+         console.log(err);
+     }
+ };
 
-             await setDoc(doc(db, "users", res.user.uid), {
-                ...data,
-                timeStamp: serverTimestamp(),
-            });          
-        } catch (err) {
-            console.log(err);
-        }
-        // try {
-        //     const res = await createUserWithEmailAndPassword(
-        //         auth,
-        //         data.email,  
-        //         data.password
-        //     );
-        //       await setDoc(doc(db, "users",res.user.uid), {
-        //         ...data,
-        //         timeStamp: serverTimestamp(),
-        //         }); 
-        //     }
-        
-        // catch (err){
-        //     console.log(err);
-        // }
-    };
-
-    return (
+    return ( 
         <div className="new">
             <Sidebar />
             <div className="newContainer">
