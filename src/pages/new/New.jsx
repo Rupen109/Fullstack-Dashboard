@@ -5,7 +5,6 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import { doc, setDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { auth,db } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -26,7 +25,7 @@ const New = ({ inputs, title }) => {
                 name: "sardargadh",
                 state: "CA",
                 country: "Junagadh",
-                timeStamp: "serverTimestamp()",
+                timeStamp: serverTimestamp(),
             });          
         } catch (err) {
             console.log(err);
