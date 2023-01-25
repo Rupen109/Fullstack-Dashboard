@@ -18,17 +18,16 @@ const New = ({ inputs, title }) => {
       setData({ ...data, [id]: value });
     }
     console.log(data);      
-  
  const handleAdd = async (e) => {
      e.preventDefault();
      try {
          const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
          await setDoc(doc(db, "users", res.user.uid), {
-             ...data, 
+             ...data,
              timeStamp: serverTimestamp(),
          });
      } catch (err) {
-         console.log(err);
+        console.log(err);
      }
  };
 
