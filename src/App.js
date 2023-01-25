@@ -18,7 +18,7 @@ function App() {
 
 const RequireAuth = ({children}) => {
   return currentUser ? (children) : <Navigate to="/login" />
-}                                                                                                                   
+}                                                                                                                    
   
   return (
     <div className={darkMode ? "app dark" : "app"}>
